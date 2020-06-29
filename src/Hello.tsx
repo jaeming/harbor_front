@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { css } from '@emotion/core'
 
 export const Hello = () => {
   return (
-    <div css={Styles}>
-      <h1>Data Loading...</h1>
-    </div>
+    <Fragment>
+      <h1>this is not in the style scope</h1>
+      <div css={style}>
+        <h1>Hello World...</h1>
+      </div>
+    </Fragment>
   )
 }
 
-const Styles = css`
+const style = css`
   h1 {
     color: tomato;
     text-align: center;
