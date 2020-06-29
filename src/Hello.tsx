@@ -1,10 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { css } from '@emotion/core'
 
 export const Hello = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div css={Styles}>
+      <h1>Data Loading...</h1>
     </div>
   )
 }
+
+const Styles = css`
+  h1 {
+    color: tomato;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: grey;
+      border-bottom: 1px solid black;
+    }
+  }
+`
