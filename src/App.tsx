@@ -1,25 +1,25 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Link } from '@reach/router'
-import { UserContext } from './UserContext'
+import { UserContext } from './components/users/UserContext'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { client } from './api/client'
-import { Hello } from './Hello'
-import { Posts } from './Posts'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Register } from './components/users/Register'
 
 const App = () => {
-  const [user, setUser] = useState({ guest: true })
+  const user = useState({})
 
   return (
     <ApolloProvider client={client}>
       <UserContext.Provider value={user}>
         <div>
-          <Posts></Posts>
-          <Hello></Hello>
           <header>
-            <Link to='/'>Home</Link>
+            <Link to='/register'>Register</Link>
           </header>
-          <Router></Router>
+          <Router>
+            <Register path='/register' />
+          </Router>
         </div>
       </UserContext.Provider>
     </ApolloProvider>

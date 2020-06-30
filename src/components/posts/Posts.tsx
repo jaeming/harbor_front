@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { postsQuery } from './api/queries/posts'
-import { HtmlContent } from './HtmlContent'
+import { postsQuery } from '../../api/queries/posts'
+import { HtmlContent } from '../shared/HtmlContent'
 
 export const Posts = () => {
   const { loading, error, data } = useQuery(postsQuery())
