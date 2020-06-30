@@ -6,6 +6,9 @@ export const postsQuery = () => gql`
       id
       title
       content
+      author {
+        email
+      }
     }
   }
 `
