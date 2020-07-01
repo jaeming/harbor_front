@@ -1,3 +1,8 @@
-import { createContext } from 'react'
+import { createContext, SetStateAction, Dispatch } from 'react'
 
-export const UserContext = createContext([{}, user => user])
+export interface User {
+  id?: number
+}
+type ContextHook = [User, Dispatch<SetStateAction<User>>]
+
+export const UserContext = createContext<ContextHook>([{}, user => user])

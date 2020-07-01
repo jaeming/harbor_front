@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
 
-export const postsQuery = () => gql`
+export const POSTS_QUERY = gql`
   {
     posts {
       id
