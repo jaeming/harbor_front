@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { UserContext } from '../../users/UserContext'
 import { useMutation } from '@apollo/react-hooks'
-import { LOGIN_MUTATION } from '../../../api/mutations/users/login'
-import { REGISTER_MUTATION } from '../../../api/mutations/users/register'
+import { LOGIN_MUTATION } from '../../../api/gql'
+import { REGISTER_MUTATION } from '../../../api/gql'
 import { Auth } from '../../../lib/auth'
 
 export enum Action {

@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Link } from '@reach/router'
@@ -6,7 +7,8 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { client } from './api/client'
 import { Register } from './components/users/Register'
 import { Login } from './components/users/Login'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { Posts } from './components/posts/Posts'
+import { NewPost } from './components/posts/NewPost'
 import { Auth } from './lib/auth'
 
 const App = () => {
@@ -21,23 +23,26 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <UserContext.Provider value={[user, setUser]}>
-        <div>
-          <header>
-            <Link to='/' className='mr-2'>
-              Home
-            </Link>
-            <Link to='/register' className='mr-2'>
-              Register
-            </Link>
-            <Link to='/login' className='mr-2'>
-              Login
-            </Link>
-          </header>
-          <Router>
-            <Register path='/register' />
-            <Login path='/login' />
-          </Router>
-        </div>
+        <header>
+          <Link to='/' className='mr-2'>
+            Home
+          </Link>
+          <Link to='/posts/new' className='mr-2'>
+            New Post
+          </Link>
+          <Link to='/register' className='mr-2'>
+            Register
+          </Link>
+          <Link to='/login' className='mr-2'>
+            Login
+          </Link>
+        </header>
+        <Posts />
+        <Router>
+          <NewPost path='posts/new' />
+          <Register path='/register' />
+          <Login path='/login' />
+        </Router>
       </UserContext.Provider>
     </ApolloProvider>
   )
