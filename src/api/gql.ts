@@ -17,6 +17,11 @@ export const CREATE_POST_MUTATION = gql`
   mutation PostCreate($input: PostInput!) {
     postCreate(input: $input) {
       id
+      title
+      content
+      author {
+        email
+      }
     }
   }
 `

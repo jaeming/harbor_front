@@ -12,18 +12,16 @@ export class Auth {
   }
 
   static async find () {
-    const token = await getItem(HARBOR_KEY)
+    const token = getItem(HARBOR_KEY)
     const decoded = Auth.decode(token)
     return decoded
   }
 
   private static decode (token: unknown) {
-    if (typeof token !== 'string') throw Error('No Token Present')
+    if (typeof token !== 'string') return
 
     const decoded = decodeJwt(token)
-    if (!decoded || typeof (decoded as User).id !== 'number') {
-      throw Error('Failed to Decode Token or not a valid ID number')
-    }
+    if (!decoded) return
 
     return (decoded as User).id
   }

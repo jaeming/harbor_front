@@ -1,19 +1,24 @@
-import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import React, { useContext, useEffect, Fragment } from 'react'
+import { client } from '../../api/apollo_client'
 import { POSTS_QUERY } from '../../api/gql'
 import { HtmlContent } from '../shared/HtmlContent'
+import { PostsContext } from './PostsContext'
 
 export const Posts = () => {
-  const { loading, error, data } = useQuery(POSTS_QUERY)
+  const [posts, setPosts] = useContext(PostsContext)
+  useEffect(() => {
+    client.query({ query: POSTS_QUERY }).then(res => setPosts(res.data.posts))
+  }, [])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-
-  return data.posts.map(({ title, content, id, author: { email } }) => (
-    <div key={id}>
-      <h4>{title}</h4>
-      <HtmlContent content={content} />
-      <p>{email}</p>
-    </div>
-  ))
+  return (
+    <Fragment>
+      {posts.map(({ title, content, id, author: { email } }) => (
+        <div key={id}>
+          <h4>{title}</h4>
+          <HtmlContent content={content} />
+          <p>{email}</p>
+        </div>
+      ))}
+    </Fragment>
+  )
 }
