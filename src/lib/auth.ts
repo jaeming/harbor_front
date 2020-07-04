@@ -13,9 +13,7 @@ export class Auth {
 
   static async find () {
     const token = await getItem(HARBOR_KEY)
-    console.log(token)
     const decoded = Auth.decode(token)
-    console.log(decoded)
     return decoded
   }
 

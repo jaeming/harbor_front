@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, Fragment } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { client } from '../../api/apollo_client'
 import { POSTS_QUERY } from '../../api/gql'
 import { HtmlContent } from '../shared/HtmlContent'
 import { PostsContext } from './PostsContext'
 
-export const Posts = () => {
+export const Posts = (_props: RouteComponentProps) => {
   const [posts, setPosts] = useContext(PostsContext)
   useEffect(() => {
     client.query({ query: POSTS_QUERY }).then(res => setPosts(res.data.posts))
