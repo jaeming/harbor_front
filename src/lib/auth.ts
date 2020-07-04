@@ -8,12 +8,14 @@ export class Auth {
   static store (token: string) {
     const decoded = Auth.decode(token)
     setItem(HARBOR_KEY, token)
-    return decoded as number
+    return decoded as User
   }
 
   static async find () {
-    const token = getItem(HARBOR_KEY)
+    const token = await getItem(HARBOR_KEY)
+    console.log(token)
     const decoded = Auth.decode(token)
+    console.log(decoded)
     return decoded
   }
 
@@ -23,6 +25,6 @@ export class Auth {
     const decoded = decodeJwt(token)
     if (!decoded) return
 
-    return (decoded as User).id
+    return decoded as User
   }
 }

@@ -30,8 +30,8 @@ export const LoginForm = ({ action }: LoginProps) => {
     e.preventDefault()
     if (action === Action.login) delete form.name
     const { data } = await loginUser({ variables: { input: form } })
-    const id = Auth.store(data[action])
-    setUser({ id })
+    const user = Auth.store(data[action])
+    setUser(user)
   }
 
   return (
@@ -70,7 +70,7 @@ export const LoginForm = ({ action }: LoginProps) => {
           Submit
         </Button>
       </Form>
-      <p>user: {user.id}</p>
+      <p>user: {JSON.stringify(user)}</p>
     </Card>
   )
 }

@@ -17,9 +17,7 @@ const App = () => {
   const [posts, setPosts] = useState([] as Post[])
 
   useEffect(() => {
-    Auth.find()
-      .then(id => (id ? setUser({ id }) : setUser({})))
-      .catch(e => setUser({}))
+    Auth.find().then(user => setUser(user || {}))
   }, [])
 
   return (
@@ -40,7 +38,6 @@ const App = () => {
               Login
             </Link>
           </header>
-          <Posts />
           <Router>
             <NewPost path='posts/new' />
             <Register path='/register' />
