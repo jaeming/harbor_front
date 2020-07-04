@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { Router, Link } from '@reach/router'
 import { NewPost } from '../posts/NewPost'
+import { Posts } from '../posts/Posts'
 
 export const Manage = (_props: RouteComponentProps) => {
   return (
@@ -12,6 +13,7 @@ export const Manage = (_props: RouteComponentProps) => {
         </Link>
       </header>
       <Router>
+        <Posts path='/' />
         <NewPost path='/posts/new' />
       </Router>
     </Fragment>
