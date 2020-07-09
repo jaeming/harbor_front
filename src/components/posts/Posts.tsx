@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { client } from '../../api/apollo_client'
 import { POSTS_QUERY } from '../../api/gql'
+import { useQuery } from '@apollo/react-hooks'
 import { HtmlContent } from '../shared/HtmlContent'
-import { PostsContext } from './PostsContext'
 
 export const Posts = (_props: RouteComponentProps) => {
-  const [posts, setPosts] = useContext(PostsContext)
-  useEffect(() => {
-    client.query({ query: POSTS_QUERY }).then(res => setPosts(res.data.posts))
-  }, [])
+  const { loading, error, data } = useQuery(POSTS_QUERY, {
+    fetchPolicy: 'network-only'
+  })
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div>Error! {error}</div>
 
   return (
     <Fragment>
-      {posts.map(({ title, content, id, author: { email } }) => (
-        <div key={id}>
-          <h4>{title}</h4>
-          <HtmlContent content={content} />
-          <p>{email}</p>
+      {data.posts.map(post => (
+        <div key={post.id}>
+          <h4>{post.title}</h4>
+          <HtmlContent content={post.content} />
+          <p>{post.author.email}</p>
         </div>
       ))}
     </Fragment>

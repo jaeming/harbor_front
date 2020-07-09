@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { CREATE_POST_MUTATION } from '../../api/gql'
 import { useMutation } from '@apollo/react-hooks'
-import { PostsContext } from './PostsContext'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -10,19 +9,15 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 export const NewPost = (_props: RouteComponentProps) => {
-  const [posts, setPosts] = useContext(PostsContext)
   const [form, setForm] = useState({ title: '', content: '' })
   const [createPost] = useMutation(CREATE_POST_MUTATION)
 
   const onFormChange = ({ target }) =>
     setForm({ ...form, [target.id]: target.value })
 
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault()
-    const {
-      data: { postCreate }
-    } = await createPost({ variables: { input: form } })
-    setPosts([...posts, postCreate])
+    createPost({ variables: { input: form } })
   }
 
   return (
