@@ -26,6 +26,14 @@ export const CREATE_POST_MUTATION = gql`
   }
 `
 
+export const DELETE_POST_MUTATION = gql`
+  mutation PostDelete($input: PostDeleteInput!) {
+    postDelete(input: $input) {
+      id
+    }
+  }
+`
+
 export const LOGIN_MUTATION = gql`
   mutation Login($input: LoginInput!) {
     login(input: $input)
