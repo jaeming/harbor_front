@@ -5,9 +5,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { HtmlContent } from '../shared/HtmlContent'
 
 export const Posts = (_props: RouteComponentProps) => {
-  const { loading, error, data } = useQuery(POSTS_QUERY, {
-    fetchPolicy: 'network-only'
-  })
+  const { loading, error, data } = useQuery(POSTS_QUERY)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error! {error}</div>
