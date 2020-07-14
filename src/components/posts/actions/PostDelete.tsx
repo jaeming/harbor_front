@@ -7,7 +7,7 @@ export const PostDelete = ({ id, setPosts, posts }) => {
   const [deletePost] = useMutation(DELETE_POST_MUTATION)
 
   const onDelete = async () => {
-    await deletePost({ variables: { input: { id } } })
+    await deletePost({ variables: { id } })
     setPosts(posts.filter(post => post.id !== id))
   }
 

@@ -26,9 +26,22 @@ export const CREATE_POST_MUTATION = gql`
   }
 `
 
+export const UPDATE_POST_MUTATION = gql`
+  mutation PostUpdate($id: Int!, $input: PostInput!) {
+    postUpdate(id: $id, input: $input) {
+      id
+      title
+      content
+      author {
+        email
+      }
+    }
+  }
+`
+
 export const DELETE_POST_MUTATION = gql`
-  mutation PostDelete($input: PostDeleteInput!) {
-    postDelete(input: $input) {
+  mutation PostDelete($id: Int!) {
+    postDelete(id: $id) {
       id
     }
   }
