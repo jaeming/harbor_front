@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { POSTS_QUERY } from '../../api/gql'
-import { useQuery } from '@apollo/react-hooks'
 import { HtmlContent } from '../shared/HtmlContent'
 import { PostActions } from '../posts/PostActions'
+import { usePostsQuery } from '~/generated/graphql'
 
 export const Posts = (_props: RouteComponentProps) => {
-  const { loading, error, data } = useQuery(POSTS_QUERY)
+  const { loading, error, data } = usePostsQuery()
   const [posts, setPosts] = useState(data?.posts)
 
   useEffect(() => setPosts(data?.posts), [data])

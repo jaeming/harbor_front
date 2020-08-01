@@ -1,0 +1,10 @@
+mutation PostUpdate($id: Int!, $input: PostInput!) {
+  postUpdate(id: $id, input: $input) {
+    id
+    title
+    content
+    author {
+      email
+    }
+  }
+}

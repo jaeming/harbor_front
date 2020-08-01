@@ -1,21 +1,5 @@
 import { createContext, SetStateAction, Dispatch } from 'react'
-
-export enum Permission {
-  userRead = 'userRead',
-  commentRead = 'commentRead',
-  commentWrite = 'commentWrite',
-  postWrite = 'postWrite',
-  postPublish = 'postPublish'
-}
-
-export interface User {
-  id: number
-  name?: string
-  email: string
-  roles: { name: Permission }[]
-  admin: boolean
-  iat: number
-}
+import { User } from '~/generated/graphql'
 
 type MaybeUser = User | {}
 

@@ -1,10 +1,9 @@
 import Button from 'react-bootstrap/Button'
 import React from 'react'
-import { useMutation } from '@apollo/react-hooks'
-import { DELETE_POST_MUTATION } from '../../../api/gql'
+import { usePostDeleteMutation } from '~/generated/graphql'
 
 export const PostDelete = ({ id, setPosts, posts }) => {
-  const [deletePost] = useMutation(DELETE_POST_MUTATION)
+  const [deletePost] = usePostDeleteMutation()
 
   const onDelete = async () => {
     await deletePost({ variables: { id } })

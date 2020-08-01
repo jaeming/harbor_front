@@ -3,10 +3,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { UserContext } from '../../users/UserContext'
-import { useMutation } from '@apollo/react-hooks'
-import { LOGIN_MUTATION } from '../../../api/gql'
-import { REGISTER_MUTATION } from '../../../api/gql'
-import { Auth } from '../../../lib/auth'
+import { useLoginMutation, useRegisterMutation } from '~/generated/graphql'
+import { Auth } from '~/lib/auth'
 
 export enum Action {
   login = 'login',
@@ -18,8 +16,9 @@ interface LoginProps {
 }
 
 export const LoginForm = ({ action }: LoginProps) => {
-  const mutation = action === Action.login ? LOGIN_MUTATION : REGISTER_MUTATION
-  const [loginUser] = useMutation(mutation)
+  const mutation =
+    action === Action.login ? useLoginMutation : useRegisterMutation
+  const [loginUser] = mutation()
   const [form, setForm] = useState({ email: '', password: '', name: '' })
   const [user, setUser] = useContext(UserContext)
 
@@ -30,8 +29,8 @@ export const LoginForm = ({ action }: LoginProps) => {
     e.preventDefault()
     if (action === Action.login) delete form.name
     const { data } = await loginUser({ variables: { input: form } })
-    const user = Auth.store(data[action])
-    setUser(user)
+    const user = data && Auth.store(data[action])
+    user && setUser(user)
   }
 
   return (

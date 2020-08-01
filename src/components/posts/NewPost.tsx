@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { CREATE_POST_MUTATION } from '../../api/gql'
-import { useMutation } from '@apollo/react-hooks'
 import { PostForm } from './PostForm'
+import { usePostCreateMutation } from '~/generated/graphql'
 
 export const NewPost = (_props: RouteComponentProps) => {
-  const [createPost] = useMutation(CREATE_POST_MUTATION)
+  const [createPost] = usePostCreateMutation()
 
   const onSubmit = form => {
     createPost({ variables: { input: form } })

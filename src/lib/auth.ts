@@ -1,6 +1,6 @@
 import decodeJwt from 'jwt-decode'
 import { getItem, setItem } from 'localforage'
-import { User } from '../components/users/UserContext'
+import { User } from '~/generated/graphql'
 
 export const HARBOR_KEY = 'harbor'
 

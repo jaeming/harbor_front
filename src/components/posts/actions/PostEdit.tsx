@@ -1,11 +1,10 @@
 import Button from 'react-bootstrap/Button'
 import React, { useState } from 'react'
 import { PostForm } from '../PostForm'
-import { useMutation } from '@apollo/react-hooks'
-import { UPDATE_POST_MUTATION } from '../../../api/gql'
+import { usePostUpdateMutation } from '~/generated/graphql'
 
-export const PostEdit = ({ id, _setPosts, posts }) => {
-  const [updatePost] = useMutation(UPDATE_POST_MUTATION)
+export const PostEdit = ({ id, posts }) => {
+  const [updatePost] = usePostUpdateMutation()
   const [showForm, setShowForm] = useState(false)
   const formState = posts.find(post => post.id === id)
 
