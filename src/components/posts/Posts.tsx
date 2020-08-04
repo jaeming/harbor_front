@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { Link } from '@reach/router'
 import { RouteComponentProps } from '@reach/router'
 import { HtmlContent } from '../shared/HtmlContent'
 import { PostActions } from '../posts/PostActions'
@@ -18,7 +19,9 @@ export const Posts = (_props: RouteComponentProps) => {
       {posts &&
         posts.map(post => (
           <div key={post.id}>
-            <h4>{post.title}</h4>
+            <h4>
+              <Link to={`posts/${post.id}`}>{post.title}</Link>
+            </h4>
             <HtmlContent content={post.content} />
             <p>{post.author.email}</p>
             <PostActions id={post.id} setPosts={setPosts} posts={posts} />

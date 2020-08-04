@@ -3,6 +3,7 @@ import { RouteComponentProps } from '@reach/router'
 import { Router, Link } from '@reach/router'
 import { NewPost } from '../posts/NewPost'
 import { Posts } from '../posts/Posts'
+import { Post } from '../posts/Post'
 
 export const Manage = (_props: RouteComponentProps) => {
   return (
@@ -15,6 +16,7 @@ export const Manage = (_props: RouteComponentProps) => {
       <Router>
         <Posts path='/' />
         <NewPost path='/posts/new' />
+        <Post path='/posts/:postId' />
       </Router>
     </Fragment>
   )

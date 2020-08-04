@@ -8,6 +8,7 @@ import { client } from './api/apollo_client'
 import { Register } from './components/users/Register'
 import { Login } from './components/users/Login'
 import { Posts } from './components/posts/Posts'
+import { Post } from './components/posts/Post'
 import { Manage } from './components/manage/Manage'
 import { Auth } from './lib/auth'
 
@@ -40,6 +41,7 @@ const App = () => {
           <Register path='/register' />
           <Login path='/login' />
           <Manage path='/manage/*' />
+          <Post path='/posts/:postId' />
         </Router>
       </UserContext.Provider>
     </ApolloProvider>
